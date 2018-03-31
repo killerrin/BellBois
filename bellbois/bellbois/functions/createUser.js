@@ -7,7 +7,7 @@ const uuidv4 = require("uuid/v4");
  * Create User
  * @param {string} email
  * @param {string} password
- * @returns {any}
+ * @returns {object.http}
  */
 module.exports = async function createUser(email, password, context) {
   // Get the current date and format in MYSQL date format
@@ -19,8 +19,10 @@ module.exports = async function createUser(email, password, context) {
   var passwordHash = hashPassword(password);
   var apiKey = hashAPIKey(email, currentDate);
 
+  const id = uuidv4();
+
   var result = await query("INSERT INTO Users (ID, username, passwordHash, email, APIKey, purchaseDate, dateCreated) VALUES (?, ?, ?, ?, ?, ?, ?)", [
-    uuidv4(),
+    id,
     email,
     passwordHash,
     email,
@@ -29,5 +31,17 @@ module.exports = async function createUser(email, password, context) {
     currentDate
   ]);
 
-  console.log(result);
-}
+  return {
+    statusCode: 200,
+    headers: {
+      headers: {
+        "Set-Cookie": `APIKey=${user.APIKey}; HttpOnly; Secure; SameSite=Strict`,
+        "Content-Type": "application/json",
+      },
+    },
+    body: JSON.stringify({
+      id,
+      email,
+    })
+  };
+};

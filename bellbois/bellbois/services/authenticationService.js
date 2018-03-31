@@ -1,12 +1,18 @@
 const query = require("./SQLService");
 const {hashPassword, hashAPIKey} = require ("./hashingService");
 
-async function authenticateUser(apiKey) {
-  var result = await query("SELECT ID, APIKey FROM Users WHERE APIKey = ?", [apiKey]);
-  // console.log(result);
+function authenticateUserContext(context) {
+  const headers = context.http.headers;
+  if (headers.hasOwnProperty("APIKey")) {
+    return authenticateUser(headers.APIKey);
+  }
+}
 
-  if (result == undefined) return false;
-  return true;
+async function authenticateUser(APIKey) {
+  var result = await query("SELECT * FROM Users WHERE APIKey = ?", [APIKey]);
+
+  if (result.length === 0) return false;
+  return result[0];
 }
 
 async function loginUser(username, password) {
@@ -28,4 +34,4 @@ async function loginUser(username, password) {
   return null;
 }
 
-module.exports = {authenticateUser, loginUser};
+module.exports = {authenticateUser, authenticateUserContext, loginUser};
