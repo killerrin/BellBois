@@ -5,7 +5,8 @@
   "author": "bellbois <jakeincanada@gmail.com>",
   "main": "functions/__main__.js",
   "dependencies": {
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "uuid": "^3.2.1"
   },
   "private": true,
   "stdlib": {
