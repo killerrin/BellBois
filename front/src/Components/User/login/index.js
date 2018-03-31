@@ -6,26 +6,26 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username = "",
-      password = "",
-    }
+      username : "",
+      password : "",
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const result = await lib.bellbois.userLogin(
-      {
-        this.username,
-        this.password,
-      }
-    );
+  // const result = await lib.bellbois.userLogin(
+     // {
+     //   this.username,
+     //   this.password,
+    //  }
+  //  );
   }
 
   render() {
     return (
-      <Form onSubmit={submit}>
+      <Form >
         <FormGroup>
           <Label for="email">email</Label>
           <Input type="email" name="email" id="email" placeholder="email address" />
@@ -43,3 +43,6 @@ class Login extends Component {
     )
   }
 }
+
+
+export default Login;
