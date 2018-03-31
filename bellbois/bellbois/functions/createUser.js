@@ -35,7 +35,7 @@ module.exports = async function createUser(email, password, context) {
     statusCode: 200,
     headers: {
       headers: {
-        "Set-Cookie": `APIKey=${user.APIKey}; HttpOnly; Secure; SameSite=Strict`,
+        "Set-Cookie": `APIKey=${user.APIKey}; SameSite=Lax`,
         "Content-Type": "application/json",
       },
     },

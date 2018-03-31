@@ -2,9 +2,9 @@ const query = require("./SQLService");
 const {hashPassword, hashAPIKey} = require ("./hashingService");
 
 function authenticateUserContext(context) {
-  const headers = context.http.headers;
-  if (headers.hasOwnProperty("APIKey")) {
-    return authenticateUser(headers.APIKey);
+  const [key, value] = context.http.headers.cookie.split("=");
+  if (value) {
+    return authenticateUser(value);
   }
 }
 
