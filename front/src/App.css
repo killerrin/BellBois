@@ -22,6 +22,17 @@
   font-size: large;
 }
 
+.container{
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 2.5vh;
+  margin-top: 2.5vh;
+  box-shadow: 0 0 5px  black;
+  height: 95vh
+}
+body{
+  background-color: rgb(245,238,212);
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

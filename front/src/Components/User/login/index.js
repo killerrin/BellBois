@@ -26,31 +26,29 @@ class Login extends Component {
   render() {
     return (
       <Form>
-        <Row>
-          <Col xs={{ size: 4, offset: 4}}>
-            <FormGroup>
-              <Label for="email">email</Label>
-              <Input type="email" name="email" id="email" placeholder="email address" />
-            </FormGroup>
-          </Col>
-        </Row>
 
-        <Row>
-          <Col xs={{ size: 4, offset: 4}}>
-            <FormGroup>
-              <Label for="password">password</Label>
-              <Input type="password" name="password" id="password" placeholder="password" />
-            </FormGroup>
-          </Col>
-        </Row>
 
-        <Row>
-          <Col xs={{ size: 4, offset: 4}}>
+            <FormGroup>
+              <Label for="email">Email</Label>
+              <Input type="email" name="email" id="email" placeholder="Email" />
+            </FormGroup>
+
+
+
+
+            <FormGroup>
+              <Label for="password">Password</Label>
+              <Input type="password" name="password" id="password" placeholder="Password" />
+            </FormGroup>
+
+
+
+
+
             <FormGroup>
               <Button color="primary" type="submit" block>Submit</Button>
             </FormGroup>
-          </Col>
-        </Row>
+
       </Form>
     )
   }
