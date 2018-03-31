@@ -1,8 +1,8 @@
 const query = require("./SQLService");
 const {hashPassword, hashAPIKey} = require ("./hashingService");
 
-async function authenticateUser(id, apiKey) {
-  var result = await query("SELECT ID, APIKey FROM Users WHERE ID = ? AND APIKey = ?", [id, apiKey]);
+async function authenticateUser(apiKey) {
+  var result = await query("SELECT ID, APIKey FROM Users WHERE APIKey = ?", [apiKey]);
   // console.log(result);
 
   if (result == undefined) return false;
