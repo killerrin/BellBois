@@ -17,9 +17,9 @@ const query = util.promisify(connection.query.bind(connection));
  * @param {string} name box's name
  * @param {string} picture picture
  * @param {string} description box's description
- * @returns {string}
+ * @returns {object}
  */
-module.exports = async (userID, name = 'box', picture = null, description = null, context) => {
+module.exports =  async (userID, name = 'box', picture = null, description = null, context) => {
   connection.connect();
 
   const id = uuidv4();
