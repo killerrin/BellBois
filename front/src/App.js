@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import User from './Components/User'
 
