@@ -7,9 +7,9 @@ function hashPassword(password) {
   return passwordHash;
 }
 
-function hashAPIKey(username, dateCreated) {
+function hashAPIKey(username, passwordHash, dateCreated) {
   const hash = crypto.createHash('sha256');
-  hash.update(username + dateCreated);
+  hash.update(username + passwordHash + dateCreated + Date.now());
   var authHash = hash.digest('hex');
   return authHash;
 }
