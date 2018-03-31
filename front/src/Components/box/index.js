@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import lib from '../../lib/lib';
 
 import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+  CardTitle, CardSubtitle, Button,Col, Row } from 'reactstrap';
 
 class Box extends Component {
-
   constructor() {
     super();
     
@@ -13,53 +12,45 @@ class Box extends Component {
       boxes: []
     }
   }
+  createCard(boxes) {
+    return (
+        <Col sm="3">
+          <Card className="border-dark mb-3" key={boxes.id}>
+          <CardImg top width="100%" src="https://cdn3.bigcommerce.com/s-iwa5azhm/products/3005/images/8589/mystery_box1__25761__96670.1430944750.400.400.jpg?c=2" alt="Card image cap"/>
+          <CardBody>
+            <CardTitle>{boxes.name}</CardTitle>
+            <CardText>{boxes.description}</CardText>
+            <Button outline color="info">Edit</Button>{' '}
+            <Button outline color="danger">Delete</Button>
+          </CardBody>
+        </Card >
+        </Col>
 
-  async getBoxes() {
-    this.setState({ boxes: await lib.bellbois.getBoxes() });
+
+    )
   }
 
-  onComponentDidMount() {
-    getBoxes();
+  async getBoxes() {
+    this.setState({ boxes: await lib.bellbois.bellbois['@dev'].getBoxes() });
+  }
+
+  componentDidMount() {
+    this.getBoxes();
   }
 
   render() {
+
     return (
       <div>
-        <Card>
-          <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-          <CardBody>
-            <CardTitle>Card title</CardTitle>
-            <CardSubtitle>Card subtitle</CardSubtitle>
-            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-          <CardBody>
-            <CardTitle>Card title</CardTitle>
-            <CardSubtitle>Card subtitle</CardSubtitle>
-            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-          <CardBody>
-            <CardTitle>Card title</CardTitle>
-            <CardSubtitle>Card subtitle</CardSubtitle>
-            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
-          </CardBody>
-        </Card>
+        <Row>
+        {this.state.boxes.map(this.createCard)}
+        </Row>
       </div>
 
     )
   }
 }
+
 
 
 export default Box;

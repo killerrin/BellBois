@@ -132,11 +132,11 @@ var lib = (function (window) {
       var arr;
 
       if (versionMatch) {
-        version = versionMatch[1];
-        version = version.replace(/^\[?(.*?)\]?$/, '$1');
+        window.version = versionMatch[1];
+        window.version = window.version.replace(/^\[?(.*?)\]?$/, '$1');
         str = str.replace(versionMatch[1], '');
         arr = str.split('.');
-        arr = arr.slice(0, 2).concat(version, arr.slice(2));
+        arr = arr.slice(0, 2).concat(window.version, arr.slice(2));
       } else {
         arr = str === '.' ? [''] : str.split('.');
       }
