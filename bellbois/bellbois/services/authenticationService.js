@@ -10,10 +10,9 @@ async function authenticateUser(id, apiKey) {
 }
 
 async function loginUser(username, password) {
-  var result = await query("SELECT * FROM Users WHERE username = ?", [username]);
   var passwordHash = hashPassword(password);
-  console.log(result[0]);
 
+  var result = await query("SELECT * FROM Users WHERE username = ?", [username]);
   var dataColumns = result[0];
   if (dataColumns["passwordHash"] === passwordHash) {
     return {

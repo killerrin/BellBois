@@ -18,7 +18,7 @@ module.exports = async function createUser(email, password, context) {
   var passwordHash = hashPassword(password);
   var apiKey = hashAPIKey(email, currentDate);
 
-  var result = await query("INSERT INTO Users (ID, username, passwordHash, email, APIKey, purchaseDate, dateCreated) VALUES (?, ?, ?, ?, ?, ?, ?)", [
+  var result = await query("INSERT INTO Users (ID, username, passwordHash, email, APIKey, purchaseDate, dateCreated) VALUES (?, ?, ?, ?, ?, '?', '?')", [
     uuidv4(),
     email,
     passwordHash,
