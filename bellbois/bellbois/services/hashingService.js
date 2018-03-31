@@ -12,3 +12,5 @@ function hashAPIKey(id, username) {
   var authHash = hash.digest('hex');
   return authHash;
 }
+
+module.exports = {hashPassword, hashAPIKey};
