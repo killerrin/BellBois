@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2018 at 01:24 PM
+-- Generation Time: Mar 31, 2018 at 01:40 PM
 -- Server version: 5.5.59-0+deb8u1
 -- PHP Version: 5.6.33-0+deb8u1
 
@@ -32,7 +32,8 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `passwordHash` varchar(512) NOT NULL,
   `email` varchar(256) NOT NULL,
   `APIKey` varchar(512) NOT NULL,
-  `purchaseDate` date DEFAULT NULL
+  `purchaseDate` date DEFAULT NULL,
+  `dateCreated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
