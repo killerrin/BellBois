@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
+import lib from '../../lib/lib';
 
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 class Box extends Component {
+
+  constructor() {
+    super();
+    
+    this.state = {
+      boxes: []
+    }
+  }
+
+  async getBoxes() {
+    this.setState({ boxes: await lib.bellbois.getBoxes() });
+  }
+
+  onComponentDidMount() {
+    getBoxes();
+  }
 
   render() {
     return (
