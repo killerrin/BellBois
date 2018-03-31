@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import User from './Components/User'
 import Login from './Components/User/login'
+import Box from './Components/box'
 
 const log =() =>(
   <Login/>
@@ -13,6 +14,10 @@ const log =() =>(
 const use =() =>(
   <User/>
 );
+const box =() =>(
+  <Box/>
+);
+
 
 class App extends Component {
   render() {
@@ -28,6 +33,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/user" render={use} />
           <Route exact path="/user/login" render={log} />
+          <Route exact path="/box" render={box} />
         </Switch>
   </Router>
       </div>
