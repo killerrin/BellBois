@@ -1,15 +1,6 @@
-const mysql = require("mysql");
+const query = require("../services/SQLService");
 
-const connection = mysql.createConnection({
-  host: process.env.host,
-  user: process.env.username,
-  password: process.env.password,
-  database: process.env.table,
-});
-
-const util = require("util");
 const uuidv4 = require("uuid/v4");
-const query = util.promisify(connection.query.bind(connection));
 
 /**
  * A basic Hello World function
@@ -20,16 +11,9 @@ const query = util.promisify(connection.query.bind(connection));
  * @returns {object}
  */
 module.exports =  async (userID, name = 'box', picture = null, description = null, context) => {
-  connection.connect();
-
   const id = uuidv4();
-
-  console.log(id);
 
   const result = await query("INSERT INTO `Boxes` (ID, name, userID, picture, description) VALUES (?, ?, ?, ?, ?)", [id, name, userID, picture, description]);
 
-  console.log("thing");
-
-  connection.end();
   return {id, name, userID, picture, description};
 };
