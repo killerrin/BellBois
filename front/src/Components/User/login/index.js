@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Row, Col, Button } from 'reactstrap';
 
 class Login extends Component {
   constructor(props) {
@@ -25,20 +25,32 @@ class Login extends Component {
 
   render() {
     return (
-      <Form >
-        <FormGroup>
-          <Label for="email">email</Label>
-          <Input type="email" name="email" id="email" placeholder="email address" />
-        </FormGroup>
+      <Form>
+        <Row>
+          <Col xs={{ size: 4, offset: 4}}>
+            <FormGroup>
+              <Label for="email">email</Label>
+              <Input type="email" name="email" id="email" placeholder="email address" />
+            </FormGroup>
+          </Col>
+        </Row>
 
-        <FormGroup>
-          <Label for="password">password</Label>
-          <Input type="password" name="password" id="password" placeholder="password" />
-        </FormGroup>
+        <Row>
+          <Col xs={{ size: 4, offset: 4}}>
+            <FormGroup>
+              <Label for="password">password</Label>
+              <Input type="password" name="password" id="password" placeholder="password" />
+            </FormGroup>
+          </Col>
+        </Row>
 
-        <FormGroup>
-          <Input type="submit" value="login" />
-        </FormGroup>
+        <Row>
+          <Col xs={{ size: 4, offset: 4}}>
+            <FormGroup>
+              <Button color="primary" type="submit" block>Submit</Button>
+            </FormGroup>
+          </Col>
+        </Row>
       </Form>
     )
   }
