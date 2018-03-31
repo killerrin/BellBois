@@ -40,8 +40,10 @@ module.exports = async function createUser(email, password, context) {
       },
     },
     body: JSON.stringify({
-      id,
-      email,
+      ID: id,
+      username: email,
+      email: email,
+      dateCreated: currentDate
     })
   };
 };
