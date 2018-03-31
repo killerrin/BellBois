@@ -1,17 +1,19 @@
 const query = require("../services/SQLService");
+const {authenticateUserContext} = require("../services/authenticationService");
 
-const uuidv4 = require("uuid/v4");
 
 /**
  * A basic Hello World function
  * @returns {array}
  */
 module.exports =  async (context) => {
-  const id = uuidv4();
+  const user = authenticateUserContext(context);
 
-  const userID = "d554d6cf-3514-11e8-bdfc-e03f49e8168b";
+  if (!user) {
+    throw new Error("Not Authenticated")
+  }
 
-  const result = await query("SELECT * from `Boxes` WHERE `Boxes`.`userID` = ?", [userID]);
+  const result = await query("SELECT * from `Boxes` WHERE `Boxes`.`userID` = ?", [user.id]);
 
   return result.map(item => Object.assign({}, item));
 };
