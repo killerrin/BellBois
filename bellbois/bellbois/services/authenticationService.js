@@ -1,7 +1,6 @@
 const query = require("./SQLService");
 const {hashPassword, hashAPIKey} = require ("./hashingService");
 
-
 async function authenticateUser(id, apiKey) {
   var result = await query("SELECT ID, APIKey FROM Users WHERE ID = ? AND APIKey = ?", [id, apiKey]);
   // console.log(result);

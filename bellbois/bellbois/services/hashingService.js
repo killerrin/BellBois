@@ -1,14 +1,15 @@
 const crypto = require('crypto');
-const hash = crypto.createHash('sha256');
 
 function hashPassword(password) {
+  const hash = crypto.createHash('sha256');
   hash.update(password);
   var passwordHash = hash.digest('hex');
   return passwordHash;
 }
 
-function hashAPIKey(id, username) {
-  hash.update(id + username);
+function hashAPIKey(username, dateCreated) {
+  const hash = crypto.createHash('sha256');
+  hash.update(username + dateCreated);
   var authHash = hash.digest('hex');
   return authHash;
 }
