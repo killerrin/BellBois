@@ -12,13 +12,14 @@ const uuidv4 = require("uuid/v4");
 module.exports = async function createUser(email, password, context) {
   // Get the current date and format in MYSQL date format
   var today = new Date();
-  var currentDate = dateFormat(today, "YYYY-MM-DD HH:MM:SS");
+  var currentDate = dateFormat(today, "yyyy-MM-dd HH:MM:ss");
+  console.log(currentDate);
 
   // Hash the values
   var passwordHash = hashPassword(password);
   var apiKey = hashAPIKey(email, currentDate);
 
-  var result = await query("INSERT INTO Users (ID, username, passwordHash, email, APIKey, purchaseDate, dateCreated) VALUES (?, ?, ?, ?, ?, '?', '?')", [
+  var result = await query("INSERT INTO Users (ID, username, passwordHash, email, APIKey, purchaseDate, dateCreated) VALUES (?, ?, ?, ?, ?, ?, ?)", [
     uuidv4(),
     email,
     passwordHash,
@@ -29,5 +30,4 @@ module.exports = async function createUser(email, password, context) {
   ]);
 
   console.log(result);
-
 }
