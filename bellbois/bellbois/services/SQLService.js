@@ -1,14 +1,11 @@
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
   host: process.env.host,
   user: process.env.username,
   password: process.env.password,
   database: process.env.table,
 });
-
-const util = require("util");
-const query = util.promisify(connection.query.bind(connection));
 
 /**
  * A basic Hello World function
@@ -16,11 +13,21 @@ const query = util.promisify(connection.query.bind(connection));
  * @param {array} args box's name
  * @returns {object}
  */
-module.exports = async (string, args) => {
-  connection.connect();
+module.exports = (string, args) => {
+  return new Promise((resolve, reject) => {
+    pool.getConnection((err, conn) => {
+      if (err) {
+        reject(err);
+      }
+      conn.query(string, args, (err, result) => {
+        if (err) {
+          reject(err);
+        }
+        else {
+          resolve(result);
+        }
+      });
+    });
+  });
 
-  const result = await query(string, args);
-
-  connection.end();
-  return result;
 };
