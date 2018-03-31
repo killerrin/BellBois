@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2018 at 01:23 PM
+-- Generation Time: Mar 31, 2018 at 02:19 PM
 -- Server version: 5.5.59-0+deb8u1
 -- PHP Version: 5.6.33-0+deb8u1
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `Boxes` (
   `ID` char(36) NOT NULL,
   `name` varchar(256) NOT NULL,
   `description` text,
-  `pictureURLS` text,
+  `picture` blob,
   `userID` char(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
