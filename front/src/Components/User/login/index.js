@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import lib from '../../../lib/lib';
 
-import { Form, FormGroup, Label, Input, Row, Col, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class Login extends Component {
   constructor(props) {
@@ -16,12 +16,14 @@ class Login extends Component {
 
   async handleSubmit(e) {
     e.preventDefault();
-    const result = await lib.bellbois.authenticateUser(
-      {
-        username: this.state.username,
-        password: this.state.password,
-      }
-    );
+    try {
+      const user = await lib.bellbois.bellbois['@dev'].authenticateUser(this.state.username, this.state.password);
+      console.log(user);
+      window.location.href = "/box";
+    }
+    catch(e) {
+      console.error(e);
+    }
   }
 
   onChange(key, event) {
@@ -30,7 +32,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Form>
+      <Form method="POST" onSubmit={this.handleSubmit}>
         <FormGroup>
           <Label for="email">email</Label>
           <Input type="email" name="email" id="email" placeholder="email address" value={ this.state.username } onChange={ this.onChange.bind(this, "username") } />
@@ -38,7 +40,7 @@ class Login extends Component {
 
         <FormGroup>
           <Label for="password">password</Label>
-          <Input type="password" name="password" id="password" placeholder="password" value={ this.state.username } onChange={ this.onChange.bind(this, "password") }/>
+          <Input type="password" name="password" id="password" placeholder="password" value={ this.state.password } onChange={ this.onChange.bind(this, "password") }/>
         </FormGroup>
 
         <FormGroup>

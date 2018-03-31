@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import lib from '../../lib/lib';
 
 import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button,Col, Row } from 'reactstrap';
+  CardTitle, Button,Col, Row } from 'reactstrap';
 
 class Box extends Component {
   constructor() {
