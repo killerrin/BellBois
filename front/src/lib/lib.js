@@ -98,17 +98,17 @@ var lib = (function (window) {
       callback: callback
     };
 
-  };
+  }
 
   function appendVersion(names, str) {
-    if (!str.match(/^@[A-Z0-9\.]+$/gi)) {
+    if (!str.match(/^@[A-Z0-9.]+$/gi)) {
       throw new Error(`${names.join('.')} invalid version: ${str}`);
     }
     return names.concat(str);
   }
 
   function appendPath(names, str) {
-    if (!str.match(/^[A-Z0-9\-\_]+$/gi)) {
+    if (!str.match(/^[A-Z0-9\-_]+$/gi)) {
       if (str.indexOf('@') !== -1) {
         throw new Error(`${names.join('.')} invalid name: ${str}, please specify versions and environments with [@version]`);
       }
@@ -128,7 +128,7 @@ var lib = (function (window) {
 
     } else if (names.length === 0 && str.indexOf('.') !== -1) {
 
-      var versionMatch = str.match(/^[^\.]+?\.[^\.]*?(\[@[^\[\]]*?\])(\.|$)/);
+      var versionMatch = str.match(/^[^.]+?\.[^.]*?(\[@[^[\]]*?])(\.|$)/);
       var arr;
 
       if (versionMatch) {
@@ -182,7 +182,7 @@ var lib = (function (window) {
         return ncfg
       }, {});
       cfg.host = cfg.host || HOST;
-      cfg.port = parseInt(cfg.port || PORT) || 80;
+      cfg.port = parseInt(cfg.port || PORT, 10) || 80;
       cfg.path = cfg.path || PATH;
       cfg.debug = !!cfg.debug;
 
@@ -222,6 +222,9 @@ var lib = (function (window) {
       Object.keys(headers).forEach(function (header) {
         xhr.setRequestHeader(header, headers[header]);
       });
+      xhr.withCredentials = true;
+      xhr.setRequestHeader("Cookie", document.cookie);
+      console.log("Cookie", document.cookie);
       xhr.addEventListener('readystatechange', function() {
 
         if (xhr.readyState === 0) {
@@ -251,6 +254,9 @@ var lib = (function (window) {
               if (contentType === 'application/json') {
                 try {
                   response = JSON.parse(response);
+                  if (response.hasOwnProperty("APIKey")) {
+                    document.cookie = `APIKey=${response.APIKey}`;
+                  }
                 } catch(e) {
                   return callback(new Error('Invalid Response JSON'));
                 }
