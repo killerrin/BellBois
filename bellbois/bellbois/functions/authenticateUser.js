@@ -2,12 +2,12 @@ const {loginUser} = require("../services/authenticationService");
 
 /**
  * Authenticate User
- * @param {string} username
+ * @param {string} email
  * @param {string} password
  * @returns {object.http}
  */
-module.exports = async function authenticateUser(username, password, context) {
-  var user = await loginUser(username, password);
+module.exports = async function authenticateUser(email, password, context) {
+  var user = await loginUser(email, password);
   if (user == null) {
     return {
       statusCode: 401,
