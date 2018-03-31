@@ -1,5 +1,4 @@
 
-
 function authenticateUser(id, authToken) {
 
 }
