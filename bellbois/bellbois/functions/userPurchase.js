@@ -2,9 +2,7 @@ const {authenticateUserContext} = require("../services/authenticationService");
 const {GenerateTransactionID, GetUserTransaction, DeleteUserTransaction, CreateUserTransaction} = require("../services/userTransactionService")
 
 /**
- * Geta a single User
- * @param {string} id
- * @param {string} apiKey
+ * Begins the process of generating a User Purchase
  * @returns {object}
  */
 module.exports = async function userPurchase(context) {
@@ -13,6 +11,13 @@ module.exports = async function userPurchase(context) {
     throw new Error("Not authenticated");
   }
 
+  // Check if the User has already purchased the item
+  if(user.purchaseDate !== null) {
+    throw new Error("This user has already purchased the premium upgrade")
+  }
+
+
+  // Generate the Transaction ID
   var transactionID = GenerateTransactionID();
 
   // Query ChangeJar to create the Transaction URLs
