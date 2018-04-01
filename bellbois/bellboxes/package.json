@@ -1,0 +1,23 @@
+{
+  "name": "bellboxes",
+  "version": "0.0.0",
+  "description": "",
+  "author": "bellbois <jakeincanada@gmail.com>",
+  "main": "functions/__main__.js",
+  "dependencies": {
+    "dateformat": "^3.0.3",
+    "mysql": "^2.15.0",
+    "uuid": "^3.2.1"
+  },
+  "private": true,
+  "stdlib": {
+    "build": "faaslang",
+    "name": "bellbois/bellboxes",
+    "timeout": 10000,
+    "publish": true,
+    "personalize": {
+      "keys": [],
+      "user": []
+    }
+  }
+}
