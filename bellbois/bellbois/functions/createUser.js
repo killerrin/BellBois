@@ -4,7 +4,7 @@ const {hashPassword, hashAPIKey} = require("../services/hashingService");
 const uuidv4 = require("uuid/v4");
 
 /**
- * Create User
+ * Create a User
  * @param {string} email
  * @param {string} password
  * @returns {object.http}

@@ -1,7 +1,7 @@
 const {authenticateUserContext} = require("../services/authenticationService");
 
 /**
- * Get User
+ * Geta a single User
  * @param {string} id
  * @param {string} apiKey
  * @returns {object}
