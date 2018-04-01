@@ -17,7 +17,7 @@ class Login extends Component {
   async handleSubmit(e) {
     e.preventDefault();
     try {
-      const user = await lib.bellbois.bellbois['@dev'].authenticateUser(this.state.username, this.state.password);
+      await lib.bellbois.bellbois['@dev'].authenticateUser(this.state.username, this.state.password);
       window.location.href = "/box";
     }
     catch(e) {
