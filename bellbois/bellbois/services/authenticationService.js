@@ -3,8 +3,8 @@ const {hashPassword, hashAPIKey} = require ("./hashingService");
 
 function authenticateUserContext(context) {
   const headers = context.http.headers;
-  if (headers.hasOwnProperty("APIKey")) {
-    return authenticateUser(headers.APIKey);
+  if (headers.hasOwnProperty("apikey")) {
+    return authenticateUser(headers.apikey);
   }
 }
 
