@@ -76,7 +76,7 @@ class Box extends Component {
   render() {
     return (
       <div>
-        <Button color="success" className="float-right" size="sm"><i className="material-icons">add</i></Button>{' '}
+        <Button color="success" className="float-right" size="sm" onclick={this.openWizard}><i className="material-icons">add</i></Button>{' '}
         <Row>
         {this.state.fetched === false || this.state.boxes.length ? this.state.boxes.map(this.createCard): "You have no boxes!!!!!1!One!"}
         </Row>
