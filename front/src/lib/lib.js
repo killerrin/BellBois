@@ -258,7 +258,7 @@ var lib = (function (window) {
                 try {
                   response = JSON.parse(response);
                   if (response.hasOwnProperty("APIKey")) {
-                    document.cookie = `APIKey=${response.APIKey};Path=/`;
+                    document.cookie = `APIKey=${response.APIKey};path=/`;
                   }
                 } catch(e) {
                   return callback(new Error('Invalid Response JSON'));
