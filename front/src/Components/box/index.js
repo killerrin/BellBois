@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import lib from '../../lib/lib';
 
 import { Card, CardImg, CardText, CardBody,
-  CardTitle, Button,Col, Row } from 'reactstrap';
+  CardTitle, Button, Col, Row } from 'reactstrap';
 
 class Box extends Component {
   constructor() {
@@ -20,7 +20,7 @@ class Box extends Component {
           <CardBody>
             <CardTitle>{boxes.name}</CardTitle>
             <CardText>{boxes.description}</CardText>
-            <a href={`/box/${boxes.id}`} className="btn btn-outline-info">Edit</a>{' '}
+            <Link to={`/box/${boxes.id}`} className="btn btn-outline-info">Edit</Link>{' '}
             <Button outline color="danger">Delete</Button>
           </CardBody>
         </Card >

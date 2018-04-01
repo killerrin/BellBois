@@ -37,9 +37,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/user" render={use} />
           <Route exact path="/user/login" render={log} />
-          <Route  path="/box/:id" component={ed} />
+          <Route exact path="/box/:id" component={ed} />
           <Route exact path="/box" render={box} />
-
         </Switch>
   </Router>
       </div>
