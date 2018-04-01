@@ -6,7 +6,7 @@ const uuidv4 = require("uuid/v4");
 /**
  * A basic Hello World function
  * @param {string} name box's name
- * @param {string} picture picture
+ * @param {any} picture picture
  * @param {string} description box's description
  * @param {number} latitude of the box
  * @param {number} longitude of the box

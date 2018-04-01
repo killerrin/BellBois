@@ -5,7 +5,7 @@ const {authenticateUserContext} = require("../services/authenticationService");
  * Updates a Box
  * @param {string} id box id.
  * @param {string} name
- * @param {string} picture
+ * @param {any} picture
  * @param {string} description
  * @param {number} latitude of the box
  * @param {number} longitude of the box
