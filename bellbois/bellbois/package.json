@@ -6,7 +6,9 @@
   "main": "functions/__main__.js",
   "dependencies": {
     "dateformat": "^3.0.3",
+    "debug": "^3.1.0",
     "mysql": "^2.15.0",
+    "node-fetch": "^2.1.2",
     "uuid": "^3.2.1"
   },
   "private": true,

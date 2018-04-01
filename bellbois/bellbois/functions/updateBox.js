@@ -1,27 +1,14 @@
 const query = require("../services/SQLService");
-const {authenticateUserContext} = require("../services/authenticationService");
-const {HasUserPurchased} = require("../services/userTransactionService")
 
 /**
- * Updates a Box
- * @param {string} ID box id.
+ * A basic Hello World function
+ * @param {string} ID boxItemm id.
+ * @param {string} boxID
  * @param {string} name
- * @param {string} picture
- * @param {string} description
- * @param {number} latitude of the box
- * @param {number} longitude of the box
- * @param {string} location User friendly location string
+ * @param {string} userID
  * @returns {object}
  */
-module.exports = async (ID, name = 'box', picture = null, description = null, latitude = null, longitude = null, location = null, context) => {
-  const user = await authenticateUserContext(context);
-  if (!user) {
-    throw new Error("Not Authenticated")
-  }
-  if (picture != null && !HasUserPurchased(user)) {
-    throw new Error("This user has not purchased the ability to do this");
-  }
-
-  const result = await query("UPDATE `Boxes` SET name = ?, picture = ?, description = ?, latitude = ?, longitude = ?, location = ? WHERE `Boxes`.`ID` = ?", [name, picture, description, latitude, longitude, location, ID]);
-  return {ID, name, picture, description};
+module.exports =  async (id, boxID, name, userID, context) => {
+  const result = await query("UPDATE `BoxItems` SET boxID = ?, name = ?, userID = ? WHERE `BoxItems`.`id` = ?", [boxID, name, userID, id]);
+  return {id, name, boxID, userID};
 };
