@@ -10,9 +10,10 @@ const {HasUserPurchased} = require("../services/userTransactionService")
  * @param {string} description
  * @param {number} latitude of the box
  * @param {number} longitude of the box
+ * @param {string} location User friendly location string
  * @returns {object}
  */
-module.exports = async (ID, name = 'box', picture = null, description = null, latitude = null, longitude = null, context) => {
+module.exports = async (ID, name = 'box', picture = null, description = null, latitude = null, longitude = null, location = null, context) => {
   const user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not Authenticated")
@@ -21,6 +22,6 @@ module.exports = async (ID, name = 'box', picture = null, description = null, la
     throw new Error("This user has not purchased the ability to do this");
   }
 
-  const result = await query("UPDATE `Boxes` SET name = ?, picture = ?, description = ?, latitude = ?, longitude = ? WHERE `Boxes`.`ID` = ?", [name, picture, description, latitude, longitude, ID]);
+  const result = await query("UPDATE `Boxes` SET name = ?, picture = ?, description = ?, latitude = ?, longitude = ?, location = ? WHERE `Boxes`.`ID` = ?", [name, picture, description, latitude, longitude, location, ID]);
   return {ID, name, picture, description};
 };
