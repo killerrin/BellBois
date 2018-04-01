@@ -41,6 +41,7 @@ class Box extends Component {
   render() {
     return (
       <div>
+        <Button color="primary" size="sm"><span className="glyphicon glyphicon-plus"></span></Button>{' '}
         <Row>
         {this.state.boxes.map(this.createCard)}
         </Row>
