@@ -100,7 +100,7 @@ class Box extends Component {
       this.setState({boxes: await lib.bellbois.bellboxes['@dev'].getBoxes(), fetched: true});
     }
     catch (e) {
-      this.setState({ redirect: "/box" });
+      this.setState({ redirect: "/user/login" });
     }
   }
 

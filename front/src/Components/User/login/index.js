@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import lib from '../../../lib/lib';
 
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Link, } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -44,6 +45,10 @@ class Login extends Component {
 
         <FormGroup>
           <Button color="primary" type="submit" block>Submit</Button>
+        </FormGroup>
+
+        <FormGroup>
+          Don't have an account? <Link to="/user">Make one</Link>
         </FormGroup>
       </Form>
     )
