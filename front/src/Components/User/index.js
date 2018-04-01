@@ -25,7 +25,7 @@ class User extends Component {
       return;
     }
     await lib.bellbois.bellbois['@dev'].createUser(this.state.email, this.state.password);
-    this.state.redirect = true;
+    this.setState({ redirect: true });
   }
 
   onChange(key, event) {
