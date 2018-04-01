@@ -18,7 +18,6 @@ class Login extends Component {
     e.preventDefault();
     try {
       const user = await lib.bellbois.bellbois['@dev'].authenticateUser(this.state.username, this.state.password);
-      console.log(user);
       window.location.href = "/box";
     }
     catch(e) {
