@@ -16,7 +16,6 @@ module.exports = async function userPurchase(context) {
     throw new Error("This user has already purchased the premium upgrade")
   }
 
-
   // Generate the Transaction ID
   var transactionID = GenerateTransactionID();
 
