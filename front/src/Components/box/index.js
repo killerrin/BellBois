@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import lib from '../../lib/lib';
 import swal from 'sweetalert2';
+import { QRCode } from 'react-qr-svg';
 
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody,
@@ -19,6 +20,7 @@ class Box extends Component {
   }
   
   createCard(boxes) {
+    console.log(boxes.ID)
     return (
       <Col sm="3">
         <Card className="border-dark mb-3" key={boxes.ID}>
@@ -27,57 +29,65 @@ class Box extends Component {
             <CardTitle>{boxes.name}</CardTitle>
             <CardText>{boxes.description}</CardText>
             <Link to={`/box/${boxes.ID}`} className="btn btn-outline-info btn-sm">Edit</Link>{' '}
-            <Button outline size="sm" color="danger" onClick={this.onDeleteBox.bind(boxes.ID)}>Delete</Button>
+            <Button outline size="sm" color="danger" value={boxes.ID} onClick={this.onDeleteBox.bind(this, boxes.ID)}>Delete</Button>
           </CardBody>
         </Card >
       </Col>
     )
   }
 
+
   async onDeleteBox(id) {
+    console.log(id)
     await lib.bellbois.bellbois['@dev'].deleteBox(id);
     const newItemList = this.boxes.items.slice(0);
     newItemList.splice(this.boxes.items.findIndex(boxes => boxes.ID === id), 1);
     this.setState({ boxes: newItemList });
   }
 
+
+
+
+
+
   openWizard(e) {
-    swal.setDefaults({
-      input: 'text',
-      confirmButtonText: 'Next &rarr;',
+    swal({
+      title: 'Ready To Create A Box?',
+      text: "Get ready to print your qr code!",
+      type: 'warning',
       showCancelButton: true,
-      progressSteps: ['1', '2', '3']
-    });
-
-    const steps = [
-      {
-        title: 'Question 1',
-        text: 'Name Of Box'
-      },
-      {
-        title: 'Question 2',
-        text: 'Description'
-      },
-      {
-        title: 'Question 3',
-        text: 'Location'
-      },
-    ];
-
-    swal.queue(steps).then((result) => {
-      swal.resetDefaults();
-
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Create it!',
+      cancelButtonText: 'Maybe later!',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false,
+      reverseButtons: true
+    }).then(async(result) => {
       if (result.value) {
+        const {id} = await lib.bellbois.bellbois['@dev'].createBox();
+        console.log(id);
         swal({
-          title: 'All done!',
-          html:
-          'Your answers: <pre>' +
-          JSON.stringify(result.value) +
-          '</pre>',
-          confirmButtonText: 'Open!'
-        });
+            title: 'Sweet!',
+            text: 'Modal with a custom image.',
+            //imageUrl: qr,
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+            animation: false
+          }
+        )
+      } else if (
+      result.dismiss === swal.DismissReason.cancel
+      ) {
+        swal(
+          'Cancelled',
+          'Maybe Another Time :)',
+          'error'
+        )
       }
-    });
+    })
   }
 
   async getBoxes() {
@@ -86,6 +96,18 @@ class Box extends Component {
 
   componentDidMount() {
     this.getBoxes();
+  }
+
+  createQR(id) {
+    return (
+      <QRCode
+        bgColor="#0000ff"
+        fgColor="#ff0000"
+        level="Q"
+        style={{ width: 256 }}
+        value={`https://bellbois.tech/box/${id}`}
+      />
+    );
   }
 
   render() {

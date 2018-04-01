@@ -4,6 +4,7 @@ import lib from '../../lib/lib';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { Redirect } from 'react-router';
 
+
 class User extends Component {
 
   constructor(props) {
