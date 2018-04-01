@@ -2,7 +2,7 @@ const query = require("../services/SQLService");
 
 /**
  * A basic Hello World function
- * @param {string} ID boxItemm id.
+ * @param {string} id boxItemm id.
  * @param {string} boxID
  * @param {string} name
  * @param {string} userID
