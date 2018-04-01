@@ -1,3 +1,4 @@
+import React, {Component} from 'react';
 import lib from '../../../lib/lib';
 
 
@@ -126,6 +127,7 @@ class Edit extends Component {
     if (this.state.redirect) {
       return <Redirect push to="/box"/>;
     }
+    console.log(this.state.box);
     return (
       <div>
         <Form method="POST" onSubmit={this.handleSubmit}>
