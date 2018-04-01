@@ -12,7 +12,7 @@ module.exports =  async (context) => {
     throw new Error("Not Authenticated")
   }
 
-  const result = await query("SELECT * from `Boxes` WHERE `Boxes`.`userID` = ?", [user.id]);
+  const result = await query("SELECT * from `Boxes` WHERE `Boxes`.`userID` = ?", [user.ID]);
 
   return result.map(item => Object.assign({}, item));
 };
