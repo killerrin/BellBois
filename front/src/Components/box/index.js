@@ -96,7 +96,12 @@ class Box extends Component {
   }
 
   async getBoxes() {
-    this.setState({boxes: await lib.bellbois.bellboxes['@dev'].getBoxes(), fetched: true});
+    try {
+      this.setState({boxes: await lib.bellbois.bellboxes['@dev'].getBoxes(), fetched: true});
+    }
+    catch (e) {
+      this.setState({ redirect: "/box" });
+    }
   }
 
   componentDidMount() {
