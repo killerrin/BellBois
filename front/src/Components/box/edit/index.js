@@ -55,7 +55,7 @@ class Edit extends Component {
       long,
       this.state.box.location
     );
-    this.setState({redirect: true});
+    this.setState({ redirect: "/box" });
 
   }
 
@@ -68,7 +68,12 @@ class Edit extends Component {
   }
 
   async getBox(id) {
-    this.setState({box: await lib.bellbois.bellbois['@dev'].getBox(id)});
+    try {
+      this.setState({box: await lib.bellbois.bellbois['@dev'].getBox(id)});
+    }
+    catch (e) {
+      this.setState({ redirect: "/user/login" });
+    }
   }
 
   async getBoxItems(id) {
@@ -125,7 +130,7 @@ class Edit extends Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect push to="/box"/>;
+      return <Redirect push to={this.state.redirect}/>;
     }
     // console.log(this.state.box.picture);
     return (

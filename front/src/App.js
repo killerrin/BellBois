@@ -40,6 +40,7 @@ class App extends Component {
           <div>
             <Router>
               <Switch>
+                <Route exact path="/" render={box} />
                 <Route exact path="/user" render={use}/>
                 <Route exact path="/user/login" render={log}/>
                 <Route exact path="/box/:id" component={ed}/>
