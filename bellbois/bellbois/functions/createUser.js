@@ -16,7 +16,7 @@ module.exports = async function createUser(email, password, context) {
 
   // Hash the values
   var passwordHash = hashPassword(password);
-  var apiKey = hashAPIKey(email, passwordHash, currentDate);
+  var APIKey = hashAPIKey(email, passwordHash, currentDate);
 
   const id = uuidv4();
 
@@ -25,7 +25,7 @@ module.exports = async function createUser(email, password, context) {
     email,
     passwordHash,
     email,
-    apiKey,
+    APIKey,
     null,
     currentDate
   ]);
@@ -42,6 +42,7 @@ module.exports = async function createUser(email, password, context) {
       ID: id,
       username: email,
       email: email,
+      APIKey,
       purchaseDate: null,
       dateCreated: currentDate
     })
