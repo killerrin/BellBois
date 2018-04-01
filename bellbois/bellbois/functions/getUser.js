@@ -1,12 +1,10 @@
 const {authenticateUserContext} = require("../services/authenticationService");
 
 /**
- * Geta a single User
- * @param {string} id
- * @param {string} apiKey
+ * Get a single User
  * @returns {object}
  */
-module.exports = async function getUser(id, apiKey, context) {
+module.exports = async function getUser(context) {
   const user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not authenticated");
