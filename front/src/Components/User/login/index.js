@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import lib from '../../../lib/lib';
 
+import { Redirect } from 'react-router-dom'
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Link, } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ class Login extends Component {
     this.state = {
       username : "",
       password : "",
+      redirect: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,7 +21,7 @@ class Login extends Component {
     e.preventDefault();
     try {
       await lib.bellbois.bellbois['@dev'].authenticateUser(this.state.username, this.state.password);
-      window.location.href = "/box";
+      this.setState({ redirect: "/box" });
     }
     catch(e) {
       console.error(e);
@@ -31,6 +33,10 @@ class Login extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
+
     return (
       <Form method="POST" onSubmit={this.handleSubmit}>
         <FormGroup>

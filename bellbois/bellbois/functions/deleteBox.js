@@ -13,4 +13,6 @@ module.exports =  async (ID, context) => {
   }
 
   const result = await query("DELETE from `Boxes` WHERE `Boxes`.`ID` = ?", [ID]);
+
+  return {};
 };

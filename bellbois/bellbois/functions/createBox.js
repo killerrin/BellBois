@@ -1,6 +1,6 @@
 const query = require("../services/SQLService");
 const {authenticateUserContext} = require("../services/authenticationService");
-const {HasUserPurchased} = require("../services/userTransactionService")
+const {HasUserPurchased} = require("../services/userTransactionService");
 const uuidv4 = require("uuid/v4");
 
 /**
@@ -24,6 +24,7 @@ module.exports = async (name = 'box', picture = null, description = null, latitu
 
   const ID = uuidv4();
 
+  console.log(ID, user, name, picture, description, latitude, longitude, location);
   const result = await query("INSERT INTO `Boxes` (ID, name, userID, picture, description, latitude, longitude, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [ID, name, user.ID, picture, description, latitude, longitude, location]);
 
   return {ID, name, userID: user.ID, picture, description, latitude, longitude};
