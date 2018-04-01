@@ -1,4 +1,5 @@
 const query = require("../services/SQLService");
+const {authenticateUserContext} = require("../services/authenticationService");
 
 /**
  * A basic Hello World function
@@ -9,6 +10,11 @@ const query = require("../services/SQLService");
  * @returns {object}
  */
 module.exports =  async (ID, boxID, userID, name, context) => {
+  const user = authenticateUserContext(context);
+  if (!user) {
+    throw new Error("Not Authenticated")
+  }
+
   const result = await query("UPDATE `BoxItems` SET boxID = ?, userID = ?, name = ? WHERE `BoxItems`.`id` = ?", [boxID, userID, name, ID]);
   return {id, boxID, userID, name};
 };
