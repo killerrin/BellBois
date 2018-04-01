@@ -70,7 +70,7 @@ class Box extends Component {
         swal({
             title: 'Sweet!',
             text: 'Here is your QR code:',
-            imageUrl: `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(`https://bellbois.tech/box/${ID}`)}&size=200x200`,
+            imageUrl: `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(`https://box.ryke.xyz/box/${ID}`)}&size=200x200`,
             imageWidth: 200,
             imageHeight: 200,
             imageClass: "print-qr-code",
