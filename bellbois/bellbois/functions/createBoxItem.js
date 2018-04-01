@@ -1,5 +1,5 @@
 const query = require("../services/SQLService");
-
+const {authenticateUserContext} = require("../services/authenticationService");
 const uuidv4 = require("uuid/v4");
 
 /**
@@ -10,6 +10,11 @@ const uuidv4 = require("uuid/v4");
  * @returns {object}
  */
 module.exports =  async (userID, boxID, name, context) => {
+  const user = authenticateUserContext(context);
+  if (!user) {
+    throw new Error("Not Authenticated")
+  }
+
   const id = uuidv4();
 
   const result = await query("INSERT INTO `BoxItems` (ID, userID, boxID, name) VALUES (?, ?, ?, ?)", [id, userID, boxID, name]);
