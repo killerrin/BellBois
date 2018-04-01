@@ -1,5 +1,6 @@
 const query = require("../services/SQLService");
 const {authenticateUserContext} = require("../services/authenticationService");
+const {HasUserPurchased} = require("../services/userTransactionService")
 
 /**
  * Updates a Box
@@ -15,6 +16,9 @@ module.exports = async (ID, name = 'box', picture = null, description = null, la
   const user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not Authenticated")
+  }
+  if (picture != null && !HasUserPurchased(user)) {
+    throw new Error("This user has not purchased the ability to do this");
   }
 
   const result = await query("UPDATE `Boxes` SET name = ?, picture = ?, description = ?, latitude = ?, longitude = ? WHERE `Boxes`.`ID` = ?", [name, picture, description, latitude, longitude, ID]);

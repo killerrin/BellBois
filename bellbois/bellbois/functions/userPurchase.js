@@ -1,5 +1,5 @@
 const {authenticateUserContext} = require("../services/authenticationService");
-const {GenerateTransactionID, GetUserTransaction, DeleteUserTransaction, CreateUserTransaction} = require("../services/userTransactionService")
+const {GenerateTransactionID, CreateUserTransaction} = require("../services/userTransactionService")
 
 /**
  * Begins the process of generating a User Purchase

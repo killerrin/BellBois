@@ -7,6 +7,14 @@ function GenerateTransactionID() {
   return id;
 }
 
+function HasUserPurchased(user) {
+  // Check if the User has already purchased the item
+  if(user.purchaseDate !== null) {
+    return true;
+  }
+  return false;
+}
+
 async function GetUserTransaction(id) {
   const result = await query("SELECT * from `UserTransactions` WHERE `UserTransactions`.`id` = ?", [id]);
 
@@ -28,4 +36,4 @@ async function CreateUserTransaction(id, userID) {
   ]);
 }
 
-module.exports = {GenerateTransactionID, GetUserTransaction, DeleteUserTransaction, CreateUserTransaction};
+module.exports = {GenerateTransactionID, HasUserPurchased, GetUserTransaction, DeleteUserTransaction, CreateUserTransaction};
