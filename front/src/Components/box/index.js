@@ -22,8 +22,8 @@ class Box extends Component {
           <CardBody>
             <CardTitle>{boxes.name}</CardTitle>
             <CardText>{boxes.description}</CardText>
-            <Link to={`/box/${boxes.ID}`} className="btn btn-outline-info">Edit</Link>{' '}
-            <Button outline color="danger">Delete</Button>
+            <Link to={`/box/${boxes.ID}`} className="btn btn-outline-info btn-sm">Edit</Link>{' '}
+            <Button outline size="sm" color="danger">Delete</Button>
           </CardBody>
         </Card >
       </Col>

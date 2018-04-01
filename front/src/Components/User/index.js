@@ -54,7 +54,7 @@ class User extends Component {
         </FormGroup>
 
         <FormGroup>
-          <Input type="submit" value="Create Account" />
+          <Input type="submit" className="btn-primary" value="Create Account" />
         </FormGroup>
       </Form>
     )
