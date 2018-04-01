@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import './lib/materialIcons.css';
 import User from './Components/User';
 import Login from './Components/User/login';
 import Box from './Components/box';
