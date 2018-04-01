@@ -2,21 +2,17 @@ const query = require("../services/SQLService");
 const {authenticateUserContext} = require("../services/authenticationService");
 
 /**
- * Gets all Box Items
- * @param {string} boxID for Box.
- * @returns {object}
+ * Gets a Box Items
+ * @param {string} ID for Box.
+ * @returns {array}
  */
-module.exports =  async (boxID, context) => {
-  const user = authenticateUserContext(context);
+module.exports =  async (ID, context) => {
+  const user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not Authenticated")
   }
 
-  const result = await query("SELECT * from `BoxItems` WHERE `BoxItems`.`boxID` = ?", [boxID]);
+  const result = await query("SELECT * from `BoxItems` WHERE `BoxItems`.`boxID` = ?", [ID]);
 
-  if (result.length > 0) {
-    return result;
-  }
-
-  throw new Error("Box Item not found");
+  return result;
 };

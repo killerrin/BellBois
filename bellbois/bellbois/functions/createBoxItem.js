@@ -4,20 +4,19 @@ const uuidv4 = require("uuid/v4");
 
 /**
  * A basic Hello World function
- * @param {string} userID user id.
- * @param {string} boxID user id.
+ * @param {string} boxID box id.
  * @param {string} name box's name
  * @returns {object}
  */
-module.exports =  async (userID, boxID, name, context) => {
-  const user = authenticateUserContext(context);
+module.exports =  async (boxID, name, context) => {
+  const user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not Authenticated")
   }
 
-  const id = uuidv4();
+  const ID = uuidv4();
 
-  const result = await query("INSERT INTO `BoxItems` (ID, userID, boxID, name) VALUES (?, ?, ?, ?)", [id, userID, boxID, name]);
+  const result = await query("INSERT INTO `BoxItems` (ID, userID, boxID, name) VALUES (?, ?, ?, ?)", [ID, user.ID, boxID, name]);
 
-  return {id, userID, boxID, name};
+  return {ID, userID: user.ID, boxID, name};
 };

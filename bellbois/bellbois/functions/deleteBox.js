@@ -3,14 +3,14 @@ const {authenticateUserContext} = require("../services/authenticationService");
 
 /**
  * Deletes a Box
- * @param {string} boxID user id.
+ * @param {string} ID box id.
  * @returns {object}
  */
-module.exports =  async (boxID, context) => {
-  const user = authenticateUserContext(context);
+module.exports =  async (ID, context) => {
+  const user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not Authenticated")
   }
 
-  const result = await query("DELETE from `Boxes` WHERE `Boxes`.`id` = ?", [boxID]);
+  const result = await query("DELETE from `Boxes` WHERE `Boxes`.`ID` = ?", [ID]);
 };
