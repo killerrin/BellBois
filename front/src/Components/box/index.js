@@ -13,7 +13,9 @@ class Box extends Component {
     this.state = {
       boxes: [],
       fetched: false,
+
     };
+    this.createCard= this.createCard.bind(this);
   }
   
   createCard(boxes) {
@@ -25,11 +27,18 @@ class Box extends Component {
             <CardTitle>{boxes.name}</CardTitle>
             <CardText>{boxes.description}</CardText>
             <Link to={`/box/${boxes.ID}`} className="btn btn-outline-info btn-sm">Edit</Link>{' '}
-            <Button outline size="sm" color="danger">Delete</Button>
+            <Button outline size="sm" color="danger" onClick={this.onDeleteBox.bind(boxes.ID)}>Delete</Button>
           </CardBody>
         </Card >
       </Col>
     )
+  }
+
+  async onDeleteBox(id) {
+    await lib.bellbois.bellbois['@dev'].deleteBox(id);
+    const newItemList = this.boxes.items.slice(0);
+    newItemList.splice(this.boxes.items.findIndex(boxes => boxes.ID === id), 1);
+    this.setState({ boxes: newItemList });
   }
 
   openWizard(e) {
@@ -43,10 +52,16 @@ class Box extends Component {
     const steps = [
       {
         title: 'Question 1',
-        text: 'Chaining swal2 modals is easy'
+        text: 'Name Of Box'
       },
-      'Question 2',
-      'Question 3'
+      {
+        title: 'Question 2',
+        text: 'Description'
+      },
+      {
+        title: 'Question 3',
+        text: 'Location'
+      },
     ];
 
     swal.queue(steps).then((result) => {
@@ -59,7 +74,7 @@ class Box extends Component {
           'Your answers: <pre>' +
           JSON.stringify(result.value) +
           '</pre>',
-          confirmButtonText: 'Lovely!'
+          confirmButtonText: 'Open!'
         });
       }
     });
@@ -76,7 +91,7 @@ class Box extends Component {
   render() {
     return (
       <div>
-        <Button color="success" className="float-right" size="sm" onclick={this.openWizard}><i className="material-icons">add</i></Button>{' '}
+        <Button color="success" className="float-right" size="sm" onClick={this.openWizard}><i className="material-icons">add</i></Button>{' '}
         <Row>
         {this.state.fetched === false || this.state.boxes.length ? this.state.boxes.map(this.createCard): "You have no boxes!!!!!1!One!"}
         </Row>
