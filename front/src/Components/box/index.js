@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import lib from '../../lib/lib';
+import swal from 'sweetalert2';
 
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody,
@@ -10,7 +11,8 @@ class Box extends Component {
     super();
     
     this.state = {
-      boxes: []
+      boxes: [],
+      fetched: false,
     };
   }
   
@@ -30,8 +32,41 @@ class Box extends Component {
     )
   }
 
+  openWizard(e) {
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      progressSteps: ['1', '2', '3']
+    });
+
+    const steps = [
+      {
+        title: 'Question 1',
+        text: 'Chaining swal2 modals is easy'
+      },
+      'Question 2',
+      'Question 3'
+    ];
+
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults();
+
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+          'Your answers: <pre>' +
+          JSON.stringify(result.value) +
+          '</pre>',
+          confirmButtonText: 'Lovely!'
+        });
+      }
+    });
+  }
+
   async getBoxes() {
-    this.setState({ boxes: await lib.bellbois.bellbois['@dev'].getBoxes() });
+    this.setState({ boxes: await lib.bellbois.bellbois['@dev'].getBoxes(), fetched: true });
   }
 
   componentDidMount() {
@@ -43,14 +78,12 @@ class Box extends Component {
       <div>
         <Button color="success" className="float-right" size="sm"><i className="material-icons">add</i></Button>{' '}
         <Row>
-        {this.state.boxes.length ? this.state.boxes.map(this.createCard): "You have no boxes!!!!!1!One!"}
+        {this.state.fetched === false || this.state.boxes.length ? this.state.boxes.map(this.createCard): "You have no boxes!!!!!1!One!"}
         </Row>
       </div>
 
     )
   }
 }
-
-
 
 export default Box;
