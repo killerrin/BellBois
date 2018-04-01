@@ -3,7 +3,7 @@ const {authenticateUserContext} = require("../services/authenticationService");
 
 
 /**
- * A basic Hello World function
+ * Get all Boxes
  * @returns {array}
  */
 module.exports =  async (context) => {

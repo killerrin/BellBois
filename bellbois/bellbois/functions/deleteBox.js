@@ -2,7 +2,7 @@ const query = require("../services/SQLService");
 const {authenticateUserContext} = require("../services/authenticationService");
 
 /**
- * A basic Hello World function
+ * Deletes a Box
  * @param {string} boxID user id.
  * @returns {object}
  */
