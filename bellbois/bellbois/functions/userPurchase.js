@@ -1,5 +1,6 @@
 const {authenticateUserContext} = require("../services/authenticationService");
 const {GenerateTransactionID, CreateUserTransaction} = require("../services/userTransactionService")
+const payments = require('../changejar_api/payments');
 
 /**
  * Begins the process of generating a User Purchase
