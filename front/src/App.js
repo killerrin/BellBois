@@ -10,6 +10,7 @@ import Login from './Components/User/login';
 import Box from './Components/box';
 import Edit from './Components/box/edit';
 import img from './bellbois.svg';
+import { Text, View } from 'react-native';
 
 const log =() =>(
   <Login/>
@@ -28,13 +29,13 @@ const ed =({ match }) =>(
 class App extends Component {
   render() {
     return (
-        <div>
+        <Veiw>
 
           <Container>
             <header>
               <img id="logo" className="img img-responsive" src={img} alt="BellBois" />
             </header>
-          <div>
+          <Veiw>
       <Router>
         <Switch>
           <Route exact path="/user" render={use} />
@@ -43,13 +44,13 @@ class App extends Component {
           <Route exact path="/box" render={box} />
         </Switch>
   </Router>
-      </div>
+      </Veiw>
             <footer>
               bye
             </footer>
           </Container>
 
-        </div>
+        </Veiw>
     );
   }
 }
