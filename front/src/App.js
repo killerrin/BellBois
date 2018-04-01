@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import User from './Components/User'
-import Login from './Components/User/login'
-import Box from './Components/box'
+import User from './Components/User';
+import Login from './Components/User/login';
+import Box from './Components/box';
+import Edit from './Components/box/edit';
 
 const log =() =>(
   <Login/>
@@ -17,6 +18,9 @@ const use =() =>(
 const box =() =>(
   <Box/>
 );
+const ed =({ match }) =>(
+  <Edit match={match}/>
+);
 
 
 class App extends Component {
@@ -26,14 +30,16 @@ class App extends Component {
 
           <Container>
             <header>
-              hi N
+              hi
             </header>
           <div>
       <Router>
         <Switch>
           <Route exact path="/user" render={use} />
           <Route exact path="/user/login" render={log} />
+          <Route  path="/box/:id" component={ed} />
           <Route exact path="/box" render={box} />
+
         </Switch>
   </Router>
       </div>
