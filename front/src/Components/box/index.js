@@ -69,14 +69,17 @@ class Box extends Component {
         console.log(ID);
         swal({
             title: 'Sweet!',
-            text: 'Now fill your box.',
-            //imageUrl: qr,
-            imageWidth: 400,
+            text: 'Here is your QR code:',
+            imageUrl: `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(`https://bellbois.tech/box/${ID}`)}&size=200x200`,
+            imageWidth: 200,
             imageHeight: 200,
-            imageAlt: 'Custom image',
-            animation: false
+            imageClass: "print-qr-code",
+            imageAlt: 'QR Code',
+            animation: false,
+            confirmButtonText: "Print"
           }
         ).then(async (result) => {
+            window.print();
             this.setState({ redirect: `/box/${ID}` })
         });
 

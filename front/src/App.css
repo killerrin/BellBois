@@ -18,7 +18,14 @@ body{
   height: auto;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  img.print-qr-code {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
