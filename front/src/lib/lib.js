@@ -223,7 +223,7 @@ var lib = (function (window) {
       console.log("Cookie", document.cookie);
       const APIKey = document.cookie.split(";").find(cookie => cookie.startsWith("APIKey="));
       if (APIKey) {
-        headers.APIKey = APIKey.split("=")[1];
+        headers.apikey = APIKey.split("=")[1];
       }
       Object.keys(headers).forEach(function (header) {
         xhr.setRequestHeader(header, headers[header]);
