@@ -13,7 +13,7 @@ module.exports = async function userPurchase(context) {
   }
 
   // Check if the User has already purchased the item
-  if(user.purchaseDate !== null) {
+  if (user.purchaseDate !== null) {
     throw new Error("This user has already purchased the premium upgrade")
   }
 
@@ -21,9 +21,18 @@ module.exports = async function userPurchase(context) {
   var transactionID = GenerateTransactionID();
 
   // Query ChangeJar to create the Transaction URLs
+  const transactionRequest = {
+    amount: 0.05,
+    reference: transactionID,
+    description: "Bellbois Premium",
+    expiresIn: 600 // 10 minutes
+  };
+
+  var response = payments.createTransaction(transactionRequest);
+  console.log(response);
 
   // Add the pending transaction to the Database
-  CreateUserTransaction(transactionID, user.ID);
+  CreateUserTransaction(transactionID, user.id);
 
   return {
     transactionID: transactionID,
