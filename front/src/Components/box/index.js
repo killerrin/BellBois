@@ -21,12 +21,12 @@ class Box extends Component {
   }
 
   createCard(boxes) {
-    console.log(boxes.ID);
+    console.log(boxes);
     return (
       <Col key={boxes.ID} sm="3">
         <Card className="border-dark mb-3" key={boxes.ID}>
           <CardImg top width="100%"
-                   src="https://cdn3.bigcommerce.com/s-iwa5azhm/products/3005/images/8589/mystery_box1__25761__96670.1430944750.400.400.jpg?c=2"
+                   src={boxes.picture || "https://cdn3.bigcommerce.com/s-iwa5azhm/products/3005/images/8589/mystery_box1__25761__96670.1430944750.400.400.jpg?c=2"}
                    alt="Card image cap"/>
           <CardBody>
             <CardTitle>{boxes.name}</CardTitle>
