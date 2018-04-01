@@ -39,14 +39,14 @@ class Edit extends Component {
   }
 
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     const {id} = this.props.match.params;
     console.log(id);
     const lat = getNumOrZero(this.state.box.latitude);
     const long = getNumOrZero(this.state.box.longitude);
 
-    lib.bellbois.bellbois['@dev'].updateBox(
+    await lib.bellbois.bellbois['@dev'].updateBox(
       id,
       this.state.box.name,
       this.state.box.picture,
