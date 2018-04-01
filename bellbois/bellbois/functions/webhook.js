@@ -3,6 +3,6 @@
 * @param {string} name Who you're saying hello to
 * @returns {object}
 */
-module.exports = async (context) => {
+module.exports = async (name, context) => {
   return {};
 };
