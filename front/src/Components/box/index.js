@@ -129,7 +129,7 @@ class Box extends Component {
         <Button color="success" className="float-right" size="sm" onClick={this.openWizard}><i
           className="material-icons">add</i></Button>{' '}
         <Row>
-          {this.state.fetched === false || this.state.boxes.length ? this.state.boxes.map(this.createCard) : "You have no boxes!!!!!1!One!"}
+          {this.state.fetched === false || this.state.boxes.length ? this.state.boxes.map(this.createCard) : "You have no boxes!"}
         </Row>
       </div>
 
