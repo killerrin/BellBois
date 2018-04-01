@@ -41,9 +41,9 @@ class Box extends Component {
   render() {
     return (
       <div>
-        <Button color="primary" size="sm"><span className="glyphicon glyphicon-plus"></span></Button>{' '}
+        <Button color="success" className="float-right" size="sm"><i className="material-icons">add</i></Button>{' '}
         <Row>
-        {this.state.boxes.map(this.createCard)}
+        {this.state.boxes.length ? this.state.boxes.map(this.createCard): "You have no boxes!!!!!1!One!"}
         </Row>
       </div>
 
