@@ -24,6 +24,10 @@ function fetchWithOAuthToken(oauthToken, ...args) {
 }
 
 function fetchOAuthToken() {
+  console.log("fetchOAuthToken");
+  console.log(config.apiUser);
+  console.log(config.apiPassword);
+  console.log(config.credentials);
   return fetch(config.baseUrl + '/oauth/token', {
     method: 'post',
     credentials: 'omit',
@@ -32,11 +36,12 @@ function fetchOAuthToken() {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': "Basic " + config.credentials
     },
-    body: "grant_type=password&scope=read%20write&username=" + config.apiUser + "&password=" + config.apiPassword
+    body: "grant_type=password&scope=read%20write&username=" + encodeURIComponent(config.apiUser) + "&password=" + encodeURIComponent(config.apiPassword)
   })
     .then(httpHelpers.checkOAuthHttpStatus)
     .then(httpHelpers.parseJSON)
     .then(oauthToken => {
+      console.log(oauthToken);
       oauthToken = oauthToken;
       return oauthToken;
     });

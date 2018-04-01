@@ -30,15 +30,13 @@ module.exports = async function userPurchase(context) {
     expiresIn: 600 // 10 minutes
   };
 
-  var response = payments.createTransaction(transactionRequest)
-    .then(transactionResponse => {
-
-    });
+  var response = await payments.createTransaction(transactionRequest);
   console.log(response);
 
-
   // Add the pending transaction to the Database
-  CreateUserTransaction(transactionID, user.id);
+  if (user != undefined && user.purchaseDate != undefined) {
+    CreateUserTransaction(transactionID, user.id);
+  }
 
   return {
     transactionID: transactionID,

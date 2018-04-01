@@ -11,6 +11,7 @@ module.exports.checkHttpStatus = (response) => {
 }
 
 module.exports.checkOAuthHttpStatus = (response) => {
+  console.log(response);
   if (response.status === 200) {
     return response
   } else {

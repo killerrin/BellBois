@@ -29,6 +29,7 @@ async function DeleteUserTransaction(id) {
 }
 
 async function CreateUserTransaction(id, userID) {
+  console.log("test");
   var result = await query("INSERT INTO UserTransactions (ID, userID, transactionDate) VALUES (?, ?, ?)", [
     id,
     userID,

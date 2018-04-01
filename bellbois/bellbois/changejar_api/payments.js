@@ -1,10 +1,9 @@
 const oauthFetch = require('./oauthFetch');
 const config = require('./env');
-const debug = require('debug')('server:api');
 const httpHelpers = require('./httpHelpers');
 
 module.exports.createTransaction = (transactionRequest) => {
-
+console.log(transactionRequest)
   return oauthFetch(config.baseUrl + '/payments/v1/transactions', {
     method: 'post',
     credentials: 'omit',
@@ -16,7 +15,7 @@ module.exports.createTransaction = (transactionRequest) => {
   })
     .then(httpHelpers.parseJSON)
     .then(result => {
-      debug('payment result:', result)
+      console.log('payment result:' +  result);
       return result;
     })
 }
