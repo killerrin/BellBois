@@ -4,7 +4,7 @@ const {authenticateUserContext} = require("../services/authenticationService");
 /**
  * Deletes a Box
  * @param {string} ID box id.
- * @returns {object}
+ * @returns {any}
  */
 module.exports =  async (ID, context) => {
   const user = await authenticateUserContext(context);
