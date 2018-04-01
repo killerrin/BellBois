@@ -127,12 +127,12 @@ class Edit extends Component {
     if (this.state.redirect) {
       return <Redirect push to="/box"/>;
     }
-    console.log(this.state.box);
+    // console.log(this.state.box.picture);
     return (
       <div>
         <Form method="POST" onSubmit={this.handleSubmit}>
           <FormGroup>
-            <img id="picture" name="picture" width="35%" height="35%" src={this.state.box.picture}/>
+            <img id="picture" name="picture" width="300px" height="200px" src={this.state.box.picture}/>
           </FormGroup>
 
           <FormGroup>
