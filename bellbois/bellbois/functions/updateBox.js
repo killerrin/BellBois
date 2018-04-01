@@ -9,7 +9,7 @@ const {authenticateUserContext} = require("../services/authenticationService");
  * @param {string} description
  * @param {number} latitude of the box
  * @param {number} longitude of the box
- * @param {number} location User Friendly Location String
+ * @param {string} location User Friendly Location String
  * @returns {object}
  */
 module.exports = async (id, name = 'box', picture = null, description = null, latitude = null, longitude = null, location = null, context) => {

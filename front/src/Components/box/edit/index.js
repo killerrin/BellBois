@@ -38,7 +38,7 @@ class Edit extends Component {
     if (typeof this.state.box.latitude !== "number") this.state.box.latitude = 0.0;
     if (typeof this.state.box.longitude !== "number") this.state.box.longitude = 0.0;
 
-    lib.bellbois.bellbois['@dev'].updateBox(id, this.state.box.name, null, this.state.box.description, this.state.box.latitude, this.state.box.longitude, this.state.box.location);
+    lib.bellbois.bellbois['@dev'].updateBox(id, this.state.box.name, null, this.state.box.description, 0.0, 0.0, this.state.box.location);
     this.setState({redirect: true});
 
   }
