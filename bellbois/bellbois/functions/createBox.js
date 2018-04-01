@@ -1,5 +1,6 @@
 const query = require("../services/SQLService");
 const {authenticateUserContext} = require("../services/authenticationService");
+const {HasUserPurchased} = require("../services/userTransactionService")
 const uuidv4 = require("uuid/v4");
 
 /**
@@ -15,6 +16,9 @@ module.exports = async (name = 'box', picture = null, description = null, latitu
   const user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not Authenticated")
+  }
+  if (picture != null && !HasUserPurchased(user)) {
+    throw new Error("This user has not purchased the ability to do this");
   }
 
   const ID = uuidv4();
