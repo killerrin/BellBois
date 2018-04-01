@@ -14,7 +14,7 @@ const uuidv4 = require("uuid/v4");
  * @returns {object}
  */
 module.exports = async (name = 'box', picture = null, description = null, latitude = null, longitude = null, location = null, context) => {
-  const user = await authenticateUserContext(context);
+  var user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not Authenticated")
   }
@@ -24,7 +24,7 @@ module.exports = async (name = 'box', picture = null, description = null, latitu
 
   const ID = uuidv4();
 
-  const result = await query("INSERT INTO `Boxes` (ID, name, userID, picture, description, latitude, longitude, location) VALUES (?, ?, ?, ?, ?, ?, ?)", [ID, name, user.ID, picture, description, latitude, longitude, location]);
+  const result = await query("INSERT INTO `Boxes` (ID, name, userID, picture, description, latitude, longitude, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [ID, name, user.ID, picture, description, latitude, longitude, location]);
 
   return {ID, name, userID: user.ID, picture, description, latitude, longitude};
 };
