@@ -7,7 +7,7 @@ const {authenticateUserContext} = require("../services/authenticationService");
  * @returns {array}
  */
 module.exports =  async (context) => {
-  const user = authenticateUserContext(context);
+  const user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not Authenticated")
   }
