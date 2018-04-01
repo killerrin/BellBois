@@ -60,4 +60,6 @@ typings/
 front/node-modules
 bellbois/bellbois/node-modules
 bellbois/bellbois/env.json
+bellbois/bellbox/node-modules
+bellbois/bellbox/env.json
 .idea/workspace.xml
