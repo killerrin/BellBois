@@ -3,7 +3,7 @@ const {authenticateUserContext} = require("../services/authenticationService");
 
 /**
  * Updates a Box Item
- * @param {string} id
+ * @param {string} ID
  * @param {string} boxID
  * @param {string} userID
  * @param {string} name
