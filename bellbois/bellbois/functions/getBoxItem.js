@@ -7,12 +7,12 @@ const {authenticateUserContext} = require("../services/authenticationService");
  * @returns {object}
  */
 module.exports =  async (ID, context) => {
-  const user = authenticateUserContext(context);
+  const user = await authenticateUserContext(context);
   if (!user) {
     throw new Error("Not Authenticated")
   }
 
-  const result = await query("SELECT * from `BoxItems` WHERE `BoxItems`.`id` = ?", [ID]);
+  const result = await query("SELECT * from `BoxItems` WHERE `BoxItems`.`ID` = ?", [ID]);
 
   if (result.length === 1) {
     return result[0];
