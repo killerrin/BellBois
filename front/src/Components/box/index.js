@@ -11,8 +11,9 @@ class Box extends Component {
     
     this.state = {
       boxes: []
-    }
+    };
   }
+  
   createCard(boxes) {
     return (
       <Col sm="3">

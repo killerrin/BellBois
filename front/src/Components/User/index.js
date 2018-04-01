@@ -4,9 +4,19 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 class User extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: "",
+      password: "",
+      confirm: "",
+    };
+  }
+
   render() {
     return (
-      <Form >
+      <Form method="POST" onSubmit={this.onSubmit}>
         <FormGroup>
           <Label for="email">Email</Label>
           <Input type="email" name="email" id="email" placeholder="Email address" />
