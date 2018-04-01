@@ -50,8 +50,8 @@ class User extends Component {
         </FormGroup>
 
         <FormGroup>
-          <Label for="password">Confirm Password</Label>
-          <Input type="password" name="password" id="password" placeholder="Confirm Password" onChange={this.onChange.bind(this, "confirm")} />
+          <Label for="confirm">Confirm Password</Label>
+          <Input type="password" name="password" id="confirm" placeholder="Confirm Password" onChange={this.onChange.bind(this, "confirm")} />
         </FormGroup>
 
         <FormGroup>
