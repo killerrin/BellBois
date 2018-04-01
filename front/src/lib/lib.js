@@ -219,12 +219,15 @@ var lib = (function (window) {
         cfg.path + pathname
       );
       xhr.responseType = 'blob';
+      console.log(document);
+      console.log("Cookie", document.cookie);
+      const APIKey = document.cookie.split(";").find(cookie => cookie.startsWith("APIKey="));
+      if (APIKey) {
+        headers.APIKey = APIKey.split("=")[1];
+      }
       Object.keys(headers).forEach(function (header) {
         xhr.setRequestHeader(header, headers[header]);
       });
-      xhr.withCredentials = true;
-      xhr.setRequestHeader("Cookie", document.cookie);
-      console.log("Cookie", document.cookie);
       xhr.addEventListener('readystatechange', function() {
 
         if (xhr.readyState === 0) {
@@ -255,7 +258,7 @@ var lib = (function (window) {
                 try {
                   response = JSON.parse(response);
                   if (response.hasOwnProperty("APIKey")) {
-                    document.cookie = `APIKey=${response.APIKey}`;
+                    document.cookie = `APIKey=${response.APIKey}; Path=""`;
                   }
                 } catch(e) {
                   return callback(new Error('Invalid Response JSON'));
