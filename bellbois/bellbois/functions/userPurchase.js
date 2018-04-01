@@ -8,13 +8,15 @@ const payments = require('../changejar_api/payments');
  */
 module.exports = async function userPurchase(context) {
   const user = await authenticateUserContext(context);
-  if (!user) {
-    throw new Error("Not authenticated");
-  }
+  // if (!user) {
+  //   throw new Error("Not authenticated");
+  // }
 
   // Check if the User has already purchased the item
-  if (user.purchaseDate !== null) {
-    throw new Error("This user has already purchased the premium upgrade")
+  if (user != undefined && user.purchaseDate != undefined) {
+    if (user.purchaseDate !== null) {
+      throw new Error("This user has already purchased the premium upgrade")
+    }
   }
 
   // Generate the Transaction ID
@@ -28,8 +30,12 @@ module.exports = async function userPurchase(context) {
     expiresIn: 600 // 10 minutes
   };
 
-  var response = payments.createTransaction(transactionRequest);
+  var response = payments.createTransaction(transactionRequest)
+    .then(transactionResponse => {
+
+    });
   console.log(response);
+
 
   // Add the pending transaction to the Database
   CreateUserTransaction(transactionID, user.id);
