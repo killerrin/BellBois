@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import lib from '../../lib/lib';
 
+import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, Button, Col, Row } from 'reactstrap';
 
