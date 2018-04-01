@@ -8,8 +8,8 @@ const uuidv4 = require("uuid/v4");
  * @param {string} name box's name
  * @param {string} picture picture
  * @param {string} description box's description
- * @param {double} latitude of the box
- * @param {double} longitude of the box
+ * @param {number} latitude of the box
+ * @param {number} longitude of the box
  * @returns {object}
  */
 module.exports =  async (userID, name = 'box', picture = null, description = null, latitude = null, longitude = null, context) => {
