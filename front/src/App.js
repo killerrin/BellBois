@@ -9,6 +9,7 @@ import User from './Components/User';
 import Login from './Components/User/login';
 import Box from './Components/box';
 import Edit from './Components/box/edit';
+import img from './bellbois.svg';
 
 const log =() =>(
   <Login/>
@@ -31,7 +32,7 @@ class App extends Component {
 
           <Container>
             <header>
-              hi
+              <img id="logo" className="img img-responsive" src={img} alt="BellBois" />
             </header>
           <div>
       <Router>
