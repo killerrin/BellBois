@@ -15,7 +15,13 @@ module.exports =  async (ID, context) => {
   const result = await query("SELECT * from `Boxes` WHERE `Boxes`.`ID` = ?", [ID]);
 
   if (result.length === 1) {
-    return result[0];
+    console.log(result[0]);
+    const box = result[0];
+    if (box.hasOwnProperty("picture") && box.picture instanceof Buffer) {
+      box.picture = box.picture.toString("utf8");
+    }
+    console.log(box);
+    return box;
   }
 
   throw new Error("Box not found");

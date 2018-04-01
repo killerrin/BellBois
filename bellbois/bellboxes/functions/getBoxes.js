@@ -15,5 +15,10 @@ module.exports =  async (context) => {
 
   const result = await query("SELECT * from `Boxes` WHERE `Boxes`.`userID` = ?", [user.ID]);
 
-  return result.map(item => Object.assign({}, item));
+  return result.map(box => {
+    if (box.hasOwnProperty("picture") && box.picture instanceof Buffer) {
+      box.picture = box.picture.toString("utf8");
+    }
+    return box;
+  });
 };

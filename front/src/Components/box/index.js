@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import lib from '../../lib/lib';
 import swal from 'sweetalert2';
 import {QRCode} from 'react-qr-svg';
+import Printd from 'printd';
 
 import {Link, Redirect} from 'react-router-dom';
 import {Button, Card, CardBody, CardImg, CardText, CardTitle, Col, Row} from 'reactstrap';
@@ -21,7 +22,6 @@ class Box extends Component {
   }
 
   createCard(boxes) {
-    console.log(boxes);
     return (
       <Col key={boxes.ID} sm="3">
         <Card className="border-dark mb-3" key={boxes.ID}>
@@ -32,7 +32,8 @@ class Box extends Component {
             <CardTitle>{boxes.name}</CardTitle>
             <CardText>{boxes.description}</CardText>
             <Link to={`/box/${boxes.ID}`} className="btn btn-outline-info btn-sm">Edit</Link>{' '}
-            <Button outline size="sm" color="danger" value={boxes.ID} onClick={this.onDeleteBox.bind(this, boxes.ID)}>Delete</Button>
+            <Button outline size="sm" color="danger" value={boxes.ID}
+                    onClick={this.onDeleteBox.bind(this, boxes.ID)}>Delete</Button>
           </CardBody>
         </Card>
       </Col>
@@ -66,11 +67,12 @@ class Box extends Component {
     }).then(async (result) => {
       if (result.value) {
         const {ID} = await lib.bellbois.bellbois['@dev'].createBox();
+        const imgSrc = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(`https://box.ryke.xyz/box/${ID}`)}&size=200x200`;
         console.log(ID);
         swal({
             title: 'Sweet!',
             text: 'Here is your QR code:',
-            imageUrl: `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(`https://box.ryke.xyz/box/${ID}`)}&size=200x200`,
+            imageUrl: imgSrc,
             imageWidth: 200,
             imageHeight: 200,
             imageClass: "print-qr-code",
@@ -79,8 +81,13 @@ class Box extends Component {
             confirmButtonText: "Print"
           }
         ).then(async (result) => {
-            window.print();
-            this.setState({ redirect: `/box/${ID}` })
+          const d = new Printd();
+          const img = document.createElement("img");
+          img.setAttribute("src", imgSrc);
+          d.print(img, "");
+          setTimeout(() => {
+            this.setState({redirect: `/box/${ID}`});
+          }, 1000)
         });
 
       } else if (
@@ -122,7 +129,7 @@ class Box extends Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect push to={this.state.redirect} />;
+      return <Redirect push to={this.state.redirect}/>;
     }
     return (
       <div>

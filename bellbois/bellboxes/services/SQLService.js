@@ -25,6 +25,7 @@ module.exports = (string, args) => {
     });
 
     connection.query(string, args, (err, result) => {
+      connection.destroy();
       if (err) {
         reject(err);
       } else {
@@ -32,7 +33,7 @@ module.exports = (string, args) => {
       }
     });
 
-    connection.end();
+    // connection.end();
   });
 };
 
