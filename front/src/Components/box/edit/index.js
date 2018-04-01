@@ -18,10 +18,9 @@ class Edit extends Component {
       box: {
         name: "loading...",
         description: "loading...",
-
+        latitude: "loading...",
+        longitude: "loading...",
         location: "loading...",
-
-
       },
       itemName:"",
       redirect: false,
@@ -106,7 +105,17 @@ class Edit extends Component {
 
         <FormGroup>
           <Label for="location">Location</Label>
-          <Input type="location" name="password" id="password" value= {this.state.box.location || ""} onChange={ this.onChange.bind(this, "location")} placeholder="location" />
+          <Input type="location" name="location" id="location" value= {this.state.box.location || ""} onChange={ this.onChange.bind(this, "location")} placeholder="location" />
+        </FormGroup>
+
+        <FormGroup>
+          <Label for="latitude">Latitude</Label>
+          <Input type="latitude" name="latitude" id="latitude" value= {this.state.box.latitude || ""} onChange={ this.onChange.bind(this, "latitude")} placeholder="latitude" />
+        </FormGroup>
+
+        <FormGroup>
+          <Label for="longitude">Longitude</Label>
+          <Input type="longitude" name="longitude" id="longitude" value= {this.state.box.longitude || ""} onChange={ this.onChange.bind(this, "longitude")} placeholder="longitude" />
         </FormGroup>
 
         <FormGroup>
