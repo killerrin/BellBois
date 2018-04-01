@@ -1,4 +1,4 @@
-const dateFormat = require('dateformat');
+const sqlDate = require('../services/dateService');
 const query = require("../services/SQLService");
 const {hashPassword, hashAPIKey} = require("../services/hashingService");
 const uuidv4 = require("uuid/v4");
@@ -11,8 +11,7 @@ const uuidv4 = require("uuid/v4");
  */
 module.exports = async function createUser(email, password, context) {
   // Get the current date and format in MYSQL date format
-  var today = new Date();
-  var currentDate = dateFormat(today, "yyyy-MM-dd HH:MM:ss");
+  var currentDate = sqlDate();
   console.log(currentDate);
 
   // Hash the values
