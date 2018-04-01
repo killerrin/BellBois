@@ -28,6 +28,7 @@ class Edit extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmitItem = this.handleSubmitItem.bind(this);
+    this.createItem = this.createItem.bind(this);
   }
 
 
@@ -42,7 +43,7 @@ class Edit extends Component {
 
   createItem(item) {
     return (
-    <ListGroupItem key={item.ID}>{item.name}</ListGroupItem>
+      <ListGroupItem key={item.ID}>{item.name}<Button className="float-right" outline color="danger" onClick={this.onDeleteItem.bind(this, item.ID)}><i className="material-icons">remove</i></Button></ListGroupItem>
     )
   }
   async getBox(id) {
@@ -68,6 +69,12 @@ class Edit extends Component {
 
   onChangeItem(key, event) {
     this.setState({[key]: event.target.value });
+  }
+  async onDeleteItem(id) {
+    await lib.bellbois.bellbois['@dev'].deleteBoxItem(id);
+    const newItemList = this.state.items.slice(0);
+    newItemList.splice(this.state.items.findIndex(item => item.ID === id), 1);
+    this.setState({ items: newItemList });
   }
 
   async handleSubmitItem(e){
