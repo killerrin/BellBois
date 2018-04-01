@@ -12,7 +12,7 @@ async function authenticateUser(APIKey) {
   var result = await query("SELECT * FROM Users WHERE APIKey = ?", [APIKey]);
 
   if (result.length === 0) return false;
-  return result[0];
+  return SafeUser(result[0]);
 }
 
 async function loginUser(username, password) {
@@ -32,6 +32,17 @@ async function loginUser(username, password) {
   }
 
   return null;
+}
+
+function SafeUser(dataColumns) {
+  return {
+    ID: dataColumns["ID"],
+    username: dataColumns["username"],
+    email: dataColumns["email"],
+    APIKey: dataColumns["APIKey"],
+    purchaseDate: dataColumns["purchaseDate"],
+    dateCreated: dataColumns["dateCreated"]
+  };
 }
 
 module.exports = {authenticateUser, authenticateUserContext, loginUser};
